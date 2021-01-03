@@ -9,7 +9,7 @@ let package = Package(
     ],
     dependencies: [
 //        .package(path: "../LifeHash"),
-        .package(url: "https://github.com/BlockchainCommons/LifeHash.git", from: "5.0.0"),
+        .package(url: "https://github.com/BlockchainCommons/LifeHash.git", from: "6.0.0"),
     ],
     targets: [
         .target(

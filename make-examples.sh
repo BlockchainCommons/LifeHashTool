@@ -5,7 +5,7 @@
 
 set -e
 
-VERSION=${1:-original}
+VERSION=${1:-version2}
 COUNT=${2:-20}
 MODULE=${3:-16}
 OUTPUT=${4:-./output}

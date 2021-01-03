@@ -28,7 +28,7 @@ func printUsage() {
         """
         Usage: \(CommandLine.arguments.first!) [OPTION...] [INPUT]
 
-          -v VERSION      [original|detailed|fiducial|grayscaleFiducial] (default: original)
+          -v VERSION      [version1|version2|detailed|fiducial|grayscaleFiducial] (default: version2)
           -m MODULE_SIZE  Size of each module ("pixel") (default: 1)
           -p OUTPUT_PATH  (default: current directory)
 
@@ -100,8 +100,10 @@ public final class LifeHashTool {
                 case "-v":
                     try next()
                     switch try next() {
-                    case "original":
-                        version = .original
+                    case "version1":
+                        version = .version1
+                    case "version2":
+                        version = .version2
                     case "detailed":
                         version = .detailed
                     case "fiducial":
@@ -125,7 +127,7 @@ public final class LifeHashTool {
                 input = try next()
             }
             guard remaining.isEmpty else {
-                throw ToolError.user("Extra unknown arguments found.")
+                throw ToolError.user("Extra unknown arguments found: \(remaining).")
             }
             
             if input == nil {
@@ -135,7 +137,7 @@ public final class LifeHashTool {
             let outputFilename = input + ".png"
 
             self.input = input
-            self.version = version ?? .original
+            self.version = version ?? .version2
             self.moduleSize = moduleSize ?? 1
             self.outputFile = outputPath.appendingPathComponent(outputFilename)
         }

@@ -46,6 +46,8 @@ Password: [enter your password]
 
 ⚠️ **NOTE:** To avoid having to code sign, the `install.sh` script does not copy the executable: it only creates a symbolic link to it. So if you delete the `.build` directory from the `LifeHashTool` directory, the link will no longer resolve.
 
+⚠️ **NOTE:** As of the release of LifeHash 6, LifeHashTool generates `.version2` LifeHashes by default.
+
 ## Usage
 
 Print the help:
@@ -55,7 +57,7 @@ lifehash --help
 
 Usage: lifehash [OPTION...] [INPUT]
 
-  -v VERSION      [original|detailed|fiducial|grayscaleFiducial] (default: original)
+  -v VERSION      [version1|version2|detailed|fiducial|grayscaleFiducial] (default: version2)
   -m MODULE_SIZE  Size of each module ("pixel") (default: 1)
   -p OUTPUT_PATH  (default: current directory)
 
@@ -66,7 +68,7 @@ Usage: lifehash [OPTION...] [INPUT]
 * If no INPUT string is provided, a random one will be generated of the form "XXX-XXX" where X is a random letter.
 ```
 
-Generate an `original`, 32x32 pixel LifeHash in the current directory from the string "0":
+Generate a `version2`, 32x32 pixel LifeHash in the current directory from the string "0":
 
 ```sh
 lifehash 0
