@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "LifeHash",
+        "repositoryURL": "https://github.com/BlockchainCommons/LifeHash.git",
+        "state": {
+          "branch": null,
+          "revision": "ddc9b421c0e976415879410735ad585559b55e71",
+          "version": "5.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
