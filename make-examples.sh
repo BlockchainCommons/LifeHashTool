@@ -15,4 +15,5 @@ mkdir -p $OUTPUT
 # rm -rf $OUTPUT/* || true
 for ((i = 0; i < $COUNT; i++)) do
   swift run -c release LifeHashTool -v $VERSION -m $MODULE -p $OUTPUT
+  # swift run -c release LifeHashTool -v $VERSION -m $MODULE -p $OUTPUT `printf %02d $i`
 done

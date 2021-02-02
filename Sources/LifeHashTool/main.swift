@@ -159,26 +159,28 @@ extension NSImage {
         return imageRep.representation(using: .png, properties: [:])!
     }
     
-    func resized(to targetSize: CGSize) -> NSImage {
-        guard size != targetSize else { return self }
+    func resized(to newSize: NSSize) -> NSImage {
+        let bitmapRep = NSBitmapImageRep(
+            bitmapDataPlanes: nil, pixelsWide: Int(newSize.width), pixelsHigh: Int(newSize.height),
+            bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
+            colorSpaceName: .calibratedRGB, bytesPerRow: 0, bitsPerPixel: 0
+        )!
+        bitmapRep.size = newSize
         
-        let img = NSImage(size: targetSize)
-        img.lockFocus()
-        defer {
-            img.unlockFocus()
-        }
-        if let ctx = NSGraphicsContext.current {
-            ctx.imageInterpolation = .none
-            draw(in: NSRect(origin: .zero, size: targetSize),
-                 from: NSRect(origin: .zero, size: size),
-                 operation: .copy,
-                 fraction: 1)
-        }
-        return img
+        NSGraphicsContext.saveGraphicsState()
+        let context = NSGraphicsContext(bitmapImageRep: bitmapRep)!
+        context.imageInterpolation = .none
+        NSGraphicsContext.current = context
+        draw(in: NSRect(x: 0, y: 0, width: newSize.width, height: newSize.height), from: .zero, operation: .copy, fraction: 1.0)
+        NSGraphicsContext.restoreGraphicsState()
+        
+        let resizedImage = NSImage(size: newSize)
+        resizedImage.addRepresentation(bitmapRep)
+        return resizedImage
     }
     
-    func resized(to targetSize: CGFloat) -> NSImage {
-        resized(to: CGSize(width: targetSize, height: targetSize))
+    func resized(to newSize: CGFloat) -> NSImage {
+        resized(to: CGSize(width: newSize, height: newSize))
     }
 }
 
