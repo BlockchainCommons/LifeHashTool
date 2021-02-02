@@ -16,17 +16,9 @@ LifeHashTool is distributed as a Swift package.
 
 ![LifeHash Montage](Art/montage.jpg?raw=true "Montage")
 
-## Additional Information
-
-The following files contain…
-
-* `$ListOfEssentialDocs`
-
 ## Status - Late Alpha
 
 `LifeHashTool` is currently under active development and in the late alpha testing phase. It should not be used for production tasks until it has had further testing and auditing.
-
-### Roadmap
 
 ## Installation Instructions
 
